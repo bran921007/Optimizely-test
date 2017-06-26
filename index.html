@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="vue.js@10.0.26" data-semver="10.0.26" src="https://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+
+  </head>
+
+  <body>
+    <div id="app">
+        <todo  v-bind:name="name" v-bind:todos="todos" v-bind:addTodo="addTodo" ></todo>
+        <pic></pic>
+    </div>
+
+  </body>
+  <script type="text/javascript" charset="utf-8">
+
+
+      Vue.component('pic',{
+        template: `<h1>{{titulo}}</h1>
+                  <div v-for="imagen in imagenes">
+                    <img src="{{imagen.src}}"></img>
+                  </div>`,
+
+         data: function () {
+           return {
+             titulo: "Fotos relacionadas",
+             imagenes:[
+               {src:'https://javascript.tutorialhorizon.com/files/2015/07/javascript.png'},
+               {src:'https://silentbedlam.gallerycdn.vsassets.io/extensions/silentbedlam/vuejs-jquery-bootstrapprojecttemplate/1.0/1491418503089/257278/1/thumbnail.png'},
+               {src:'https://pbs.twimg.com/profile_images/617952915156770816/bw21WmK1.png'}
+              ]
+            }
+         }
+
+      });
+
+      Vue.component('todo',{
+        props: ['name','todos','addTodo'],
+        methods:{
+
+          onchange: function()
+          {
+            alert("hola")
+          }
+        },
+        template: `
+        <div>
+        <h1>Hello {{name }} !</h1>
+        <table>
+          <tr v-for="todo in todos">
+            <td>{{ todo.text }}</td>
+          </tr>
+        </table>
+        <input type="text"  class="text">
+        <button v-on:click="addTodo">Agregar</button>
+        </div>`
+      });
+
+      
+
+    let app = new Vue({
+      el: '#app',
+      data: {
+        name: 'john doe',
+        visible: true,
+        tarea: '',
+        todos: [
+          { text: 'Learn JavaScript' },
+          { text: 'Learn Vue' },
+          { text: 'Build something awesome' }
+        ]
+
+      },
+      methods:{
+        addTodo:function(){
+          alert('addTodo method');
+          // if(this.tarea){
+          //   this.todos.push({text: this.tarea})
+          // }
+
+        }
+      },
+      filters: {
+        uppercase: function (str) {
+           return str.toUpperCase()
+         },
+        lowercase: function (str) {
+           return str.toLowerCase()
+         },
+         capitalize: function(str)
+         {
+           return str.chartAt(0).toUpperCase() + str.slice(1)
+         }
+
+      }
+
+    });
+
+
+  </script>
+</html>
