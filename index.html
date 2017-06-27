@@ -8,7 +8,17 @@
 
   <body>
     <div id="app">
-        <todo  v-bind:name="name" v-bind:todos="todos" v-bind:addTodo="addTodo" ></todo>
+<!--         <todo  v-bind:name="name" v-bind:todos="todos" v-bind:addTodo="addTodo" ></todo> -->
+       <div>
+        <h1>Hello {{name }} !</h1>
+        <table>
+          <tr v-for="todo in todos">
+            <td>{{ todo.text }}</td>
+          </tr>
+        </table>
+        <input type="text"  class="text">
+        <button v-on:click="addTodo">Agregar</button>
+        </div>
         <pic></pic>
     </div>
 
