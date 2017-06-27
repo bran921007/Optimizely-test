@@ -35,8 +35,8 @@
 
       Vue.component('pic',{
         template: `<h1>{{titulo}}</h1>
-                  <div v-for="imagen in imagenes">
-                    <img src="{{imagen.src}}"></img>
+                  <div >
+                    <img  v-for="imagen in imagenes" src="{{imagen.src}}"></img>
                   </div>`,
 
          data: function () {
